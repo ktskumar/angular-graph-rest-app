@@ -1,0 +1,234 @@
+<!--  Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license.
+        See LICENSE in the source repository root for complete license information. -->
+        <div class="ms-Grid-row fullheight">
+            <!-- App navigation bar markup. -->
+            <div class="ms-NavBar">
+              <ul class="ms-NavBar-items">
+                <li class="navbar-header">Microsoft Graph Application</li>
+                <li class="ms-NavBar-item ms-NavBar-item--right" ng-show="main.isAuthenticated()" ng-click="main.logout()">
+                  <i class="ms-Icon ms-Icon--x"></i> Disconnect</li>
+              </ul>
+            </div>
+          
+            <!-- App main content markup. -->
+            <div class="ms-Grid-col ms-u-md12 ms-u-lg12 fullheight">
+              <div ng-hide="main.isAuthenticated()">
+                <p class="ms-font-xl">Use the button below to connect to Microsoft Graph.</p>
+                <button class="ms-Button" ng-click="main.login()">
+                  <span class="ms-Button-label">Connect</span>
+                </button>
+              </div>
+              <div class="fullheight" ng-show="main.isAuthenticated()">
+          
+                <div class="ms-Grid-row fullheight">
+                  <div class="ms-Grid-col ms-u-md2 ms-u-lg2 leftnav fullheight">
+                    <ul class="app-menu">
+                      <li class="link" ng-click="main.showview('Outlook')">Outlook</li>
+                      <li class="link" ng-click="main.showview('SharePoint')">SharePoint</li>
+                      <li class="link" ng-click="main.showview('OneDrive')">Onedrive</li>
+                      <li class="link" ng-click="main.showview('Users and Groups')">Users and Groups</li>
+                      <li class="link" ng-click="main.showview('Events')">Events</li>
+                    </ul>
+                  </div>
+                  <div class="ms-Grid-col ms-u-md10 ms-u-lg10 rightnav fullheight">
+                    <div class="ms-font-xxl ms-fontWeight-semibold app-header">{{ main.view }}</div>
+                    <!-- OUTLOOK -->
+          
+                    <div class="app-view" ng-show="main.view === 'Outlook'">                
+                      <h2 class="ms-font-xxl ms-fontWeight-semibold">Hi, {{ main.displayName }}!</h2>
+                      <p class="ms-font-xl">You're now connected to Microsoft Graph. Click the button below to send a message from your account using the Microsoft Graph API. </p>
+                      <div class="ms-TextField">
+                        <input ng-model="main.emailAddress" class="ms-TextField-field">
+                      </div>
+                
+                      <button class="ms-Button" ng-click="main.sendMail()">
+                        <span class="ms-Button-label">Send mail</span>
+                      </button>
+                      <div ng-show="main.requestSuccess && main.requestFinished">
+                        <p class="ms-font-m ms-fontColor-green">Successfully sent an email to {{ main.emailAddressSent }}!</p>
+                      </div>
+                      <div ng-show="!main.requestSuccess && main.requestFinished">
+                        <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't send an email.</p>
+                      </div>
+          
+                      <button class="ms-Button" ng-click="main.getMessages()">
+                        <span class="ms-Button-label">Get Message</span>
+                      </button>
+                    </div>
+          
+                    <!-- SHAREPOINT -->
+          
+                    <div class="app-view" ng-show="main.view === 'SharePoint'">                
+                      <button class="ms-Button" ng-click="main.getAllSites()">
+                          <span class="ms-Button-label">Get All Sites</span>
+                        </button>
+                        <p> Retrived sites count: {{main.spsites.length}}</p>
+                        <table width="100%" cellpadding="2" cellspacing="0" border="1">
+                            <thead>
+                              <tr>
+                                <th>Title</th>
+                                <th>Web Url</th>
+                                <th>Id</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tr ng-repeat="_site in main.spsites">
+                                <td>{{_site.displayName}}</td>
+                              <td>{{_site.webUrl}}</td>
+                              <td>{{_site.id}}</td>
+                              <td><button ng-click="main.getSiteInfo(_site.id)">Get Lists</button></td>
+                            </tr>
+                          </table>
+                    </div>
+          
+                    <!-- ONEDRIVE -->
+                    <div class="app-view" ng-show="main.view === 'OneDrive'">
+                      <button class="ms-Button" ng-click="main.getDriveItems()">
+                          <span class="ms-Button-label">Get All Drive Items</span>
+                        </button>
+                        <p> Total Items: {{main.oditems.length}}</p>
+                        <table width="100%" cellpadding="2" cellspacing="0" border="1">
+                            <thead>
+                              <tr>
+                                <th>Title</th>
+                                <th>Web Url</th>
+                                <th>Id</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tr ng-repeat="_od in main.oditems">
+                                <td>{{_od.name}}</td>
+                              <td>{{_od.webUrl}}</td>
+                              <td>{{_od.id}}</td>
+                              <td>
+                                <button ng-show="_od.folder" ng-click="main.getFolderItems(_od.id)">Get Files</button>
+                                <span ng-show="_od.file" >
+                                <a href={{_od['@microsoft.graph.downloadUrl']}}>Download</a>
+                                </span>
+                              </td>
+                            </tr>
+                          </table>
+          
+          
+                          <h2>Create Folder</h2>
+                              <div class="ms-TextField">
+                                  <label class="ms-Label">Folder Name</label>
+                                  <input  ng-model="main.odFolderName" class="ms-TextField-field">
+                                </div>
+                               
+                          
+                                <button class="ms-Button" ng-click="main.createFolder()">
+                                  <span class="ms-Button-label">Create Folder</span>
+                                </button>
+                                <div ng-show="main.folderSuccess && main.folderFinished">
+                                    <p class="ms-font-m ms-fontColor-green">Successfully Folder created</p>
+                                  </div>
+                                  <div ng-show="!main.folderSuccess && main.folderFinished">
+                                    <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't create an folder.</p>
+                                  </div>
+          
+          
+                    </div>
+          
+                    <!-- USERS and GROUPS -->
+                    <div class="app-view" ng-show="main.view === 'Users and Groups'">
+                      <button class="ms-Button" ng-click="main.getAllUsers()">
+                          <span class="ms-Button-label">Get All Users</span>
+                        </button>
+                        <p> Total Users: {{main.allusers.length}}</p>
+                        <table width="100%" cellpadding="2" cellspacing="0" border="1">
+                            <thead>
+                              <tr>
+                                <th>Display Name</th>
+                                <th>Id</th>
+                                <th>Mail ID</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tr ng-repeat="_usr in main.allusers">
+                                <td>{{_usr.displayName}}</td>
+                              <td>{{_usr.id}}</td>
+                              <td>{{_usr.mail}}</td>
+                              <td>
+                                  <button  ng-click="main.getUserGroups(_usr.id)">Get Groups</button>
+                              </td>
+                            </tr>
+                          </table>
+          
+                        <button class="ms-Button" ng-click="main.getAllGroups()">
+                            <span class="ms-Button-label">Get All Groups</span>
+                          </button>
+                          <p> Total Groups: </p>
+                          <table width="100%" cellpadding="2" cellspacing="0" border="1">
+                              <thead>
+                                <tr>
+                                  <th>Display Name</th>
+                                  <th>Id</th>
+                                  <th>Mail ID</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tr ng-repeat="_grp in main.allgroups">
+                                  <td>{{_grp.displayName}}</td>
+                                <td>{{_grp.id}}</td>
+                                <td>{{_grp.mail}}</td>
+                                <td>
+                                    <button  ng-click="main.getGroupUsers(_grp.id)">Get Users</button>
+                                </td>
+                              </tr>
+                            </table>                      
+                    </div>
+          
+                    <!-- EVENTS -->          
+                    <div class="app-view" ng-show="main.view === 'Events'">
+                        <button class="ms-Button" ng-click="main.getEvents()">
+                            <span class="ms-Button-label">Calendar Events</span>
+                          </button>
+                          <p> Total Events: {{main.allevents.length}}</p>
+                        <table width="100%" cellpadding="2" cellspacing="0" border="1">
+                            <thead>
+                              <tr>
+                                <th>Subject</th>
+                                <th>Start</th>
+                                <th>End</th>
+                                
+                              </tr>
+                            </thead>
+                            <tr ng-repeat="_event in main.allevents">
+                                <td>{{_event.subject}}</td>
+                              <td>{{_event.start.dateTime}}</td>
+                              <td>{{_event.end.dateTime}}</td>
+                              
+                            </tr>
+                          </table>
+          
+                          <h2>Schedule Event</h2>
+                          <div class="ms-TextField">
+                              <label class="ms-Label">Subject</label>
+                              <input  ng-model="main.meetSubject" class="ms-TextField-field">
+                            </div>
+                            <div class="ms-TextField">
+                                <label class="ms-Label">Start Date</label>
+                                <input ng-model="main.meetStart" class="ms-TextField-field">
+                              </div>
+                              <div class="ms-TextField">
+                                  <label class="ms-Label">End Date</label>
+                                  <input ng-model="main.meetEnd" class="ms-TextField-field">
+                                </div>
+                      
+                            <button class="ms-Button" ng-click="main.createEvent()">
+                              <span class="ms-Button-label">Create Event</span>
+                            </button>
+                            <div ng-show="main.eventSuccess && main.eventFinished">
+                                <p class="ms-font-m ms-fontColor-green">Successfully event created</p>
+                              </div>
+                              <div ng-show="!main.eventSuccess && main.eventFinished">
+                                <p class="ms-font-m ms-fontColor-redDark">Something went wrong, couldn't create an event.</p>
+                              </div>
+                    </div>
+          
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>

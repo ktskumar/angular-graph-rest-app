@@ -1,0 +1,94 @@
+html, body{
+  padding:0px;
+  margin:0px;
+}
+html, body{
+  height:100%;
+  font-family:'Segoe UI Semilight WestEuropean', 'Segoe UI Semilight', 'Segoe WP Semilight', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+}
+.fullheight{
+  height: 100%;
+}
+.ms-NavBar{
+  background-color: #000;
+  color:#fff;
+}
+.leftnav{
+  border-right:1px solid #eee;
+  padding:0px;
+  background-color: #f4f4f4;
+}
+.rightnav{
+  padding: 0px;
+}
+.navbar-header {
+  box-sizing: border-box;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  font-family: 'Segoe UI Semilight WestEuropean', 'Segoe UI Semilight', 'Segoe WP Semilight', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+  font-size: 17px;
+  padding-left: 20px;
+  position: relative;
+  font-weight: bold;
+
+}
+.app-menu{
+  padding:0px;
+}
+.app-header{
+  background-color: #2055a4;
+  color: #fff;
+  padding:12px;
+}
+.app-view{
+  padding:12px;
+}
+.app-menu li{
+  list-style-type: none  ;
+  padding:0 10px;
+  padding-top:6px;
+  padding-bottom: 6px;
+  cursor: pointer;
+}
+
+.app-menu li.link:hover{
+  background-color: #eaeaea;
+}
+
+li.link{
+font-size:100;
+line-height: 1.5;
+font-size:17px;
+}
+.app-menu li span{
+  width:100%;
+  text-align: left;
+}
+
+
+@media (min-width: 480px) {
+  .navbar-header {
+    float: left;
+    margin-right: 20px;
+    font-size: 20px;
+    padding: 0;
+  }
+}
+
+.ms-TextField {
+  width: 300px;
+  display: inline-block;
+}
+
+.icon-holder {
+  display: inline-block;
+  width: 30px;
+}
+
+.big-icon {
+  font-size: 30px;
+  top: 5px;
+  position: relative;
+}
+
