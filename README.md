@@ -1,4 +1,4 @@
-# Microsoft Graph + Angular JS Application (Completed App)#
+# Microsoft Graph + Angular JS Application (Completed App) #
 
 This Repo is a completed app of my another Repo - [angular-graph-rest-preapp](https://github.com/ktskumar/angular-graph-rest-preapp). This Repo is generated on top of Angular QuickStart from Microsoft Graph.
 
