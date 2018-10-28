@@ -141,7 +141,7 @@
     };
 
 
-    /* SharePoint Methods */
+    //SharePoint Methods
     vm.getAllSites = function(){
       var searchQuery = "*";
       GraphHelper.getAllSites(searchQuery).then(function (response){
@@ -161,7 +161,7 @@
       });
     }
 
-    /* OneDrive Methods */
+    //OneDrive Methods
     vm.getDriveItems = function(){
       GraphHelper.getDriveItems().then(function(response){
         vm.oditems = response.data.value;
@@ -197,7 +197,7 @@
       });
     }
 
-    /* Users and Groups Methods */
+    //Users and Groups methods
     vm.getAllUsers = function(){
       GraphHelper.getAllUsers().then(function(response){
         vm.allusers = response.data.value;
@@ -230,10 +230,9 @@
         alert(str);
         console.log(response.data.value);
       });
-
     }
 
-    /** CALENDAR EVENTS Methods */
+    //Calendar Event methods
 
     vm.getEvents = function () {
       GraphHelper.getEvents().then(function (response) {
@@ -264,11 +263,9 @@
         vm.eventSuccess = false;
         vm.eventFinished = true;
       });
-
-
     }
 
-    /* Utilities */
+    //Utilities
     vm.showview = function (vwname) {
       vm.view = vwname;
     }
