@@ -1,4 +1,4 @@
-# Microsoft Graph + Angular JS Application #
+# Microsoft Graph + Angular JS Application (Completed App)#
 
 This Repo is a completed app of my another Repo - [angular-graph-rest-preapp](https://github.com/ktskumar/angular-graph-rest-preapp). This Repo is generated on top of Angular QuickStart from Microsoft Graph.
 
@@ -17,7 +17,7 @@ Follow the below steps and use the code snippets to fetch the details from Micro
   - Enable **Allow Implicit Flow** checkbox
   - Enter the Redirect URLs as http://localhost:8080/
 - Copy the **Client ID** which is generated in App Registration.
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/configClientID.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/configClientID.png)
 - In the editor navigate to *Scripts/config.js*
   - Replace **&#60;Client ID&#62;** with your **Client ID** value
   - Update the GraphScopes in config.json
@@ -29,9 +29,9 @@ Follow the below steps and use the code snippets to fetch the details from Micro
   -  **npm start**
 - After successfull build, nvaigate to the location http://localhost:8080
 - Click **Connect** button to authenticate the App
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/connect.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/connect.png)
 - After connected, the view looks like below. Now you free to add your own code to connect Graph API
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/outlook.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/outlook.png)
 
 ### Use the Code Snippets
 The file **Public/Views/Main.html** contains required html snippets for running the complete application. So you have to concentrate on calling the GRAPH API and pass that method to the view.
@@ -40,7 +40,7 @@ If you want to add more properties and functionalities, you can modify the **Mai
 
 #### Connect SharePoint
 
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/sharepoint.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/sharepoint.png)
 
 The below Code snippets calls the Microsoft Graph API to fetch all the sites based on the searchquery and lists from the site based on the siteid
 
@@ -83,7 +83,7 @@ Under **`//SharePoint Methods`**
 
 #### Connect OneDrive
 
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/onedrive.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/onedrive.png)
 
 The below code snippets calls the Microsoft Graph API to fetch the folder, files and create a folder
 
@@ -145,7 +145,7 @@ Under **`//OneDrive Methods`**
 
 #### Connect Users and Groups
 
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/usersgroups.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/usersgroups.png)
 
 The below code snippets calls the Microsoft Graph API to fetch the users and groups
 
@@ -210,7 +210,7 @@ Under **`//Users and Groups Methods`**
 
 #### Connect Calendar Events
 
-![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-preapp/master/README_assets/events.png)
+![](https://raw.githubusercontent.com/ktskumar/angular-graph-rest-app/master/README_assets/events.png)
 
 The below code snippets calls the Microsoft Graph API to fetch the events for the user and create a new event
 
@@ -263,7 +263,7 @@ Under **`//Calendar Event methods`**
     }
 ```
 
-After updating all the above codes. Run **npm start** from the terminal to get the final output. The repo for final output is available in [angular-graph-rest-app](https://github.com/ktskumar/angular-graph-rest-app).
+After updating all the above codes. Run **npm start** from the terminal to get the final output. The repo for final output is available here [angular-graph-rest-app](https://github.com/ktskumar/angular-graph-rest-app).
 
 
 *Cheers!*
